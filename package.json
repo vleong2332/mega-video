@@ -1,0 +1,34 @@
+{
+  "name": "mega-video",
+  "version": "1.0.0",
+  "description": "",
+  "main": "karma.conf.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "jquery": "^2.1.4",
+    "karma": "^0.12.35",
+    "jasmine-core": "^2.3.4",
+    "karma-chrome-launcher": "^0.1.12",
+    "karma-jasmine": "^0.3.5",
+    "karma-ng-html2js-preprocessor": "^0.1.2"
+  },
+  "devDependencies": {
+    "karma": "^0.12.35",
+    "karma-jasmine": "^0.3.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vleong2332/mega-video.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vleong2332/mega-video/issues"
+  },
+  "homepage": "https://github.com/vleong2332/mega-video"
+}

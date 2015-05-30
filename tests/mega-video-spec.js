@@ -3,7 +3,8 @@ describe('megaVideo', function() {
    var mp4Src, oggSrc, html, compiled, element, scope;
 
    beforeEach(module('megaVideoDemo'));
-   beforeEach(module('mega-video.html'));
+   // beforeEach(module('megaVideoHtml'));
+   beforeEach(module('templates/mega-video.html'));
    beforeEach(inject(function($rootScope, $compile) {
       oggSrc = 'https://ia600500.us.archive.org/1/items/Duck_and_Cover/1951_duck_and_cover.ogv';
       mp4Src = 'https://archive.org/download/Duck_and_Cover/1951_duck_and_cover_512kb.mp4"';
@@ -19,6 +20,7 @@ describe('megaVideo', function() {
       compiled = $compile(html);
       element = compiled(scope);
       scope.$digest();
+
    }));
 
    it('should render the element correctly', function() {

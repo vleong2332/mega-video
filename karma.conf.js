@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Sat May 30 2015 00:47:13 GMT-0500 (Central Daylight Time)
+// Generated on Sat May 30 2015 12:31:15 GMT-0500 (Central Daylight Time)
 
 module.exports = function(config) {
   config.set({
@@ -12,11 +12,17 @@ module.exports = function(config) {
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
 
+    plugins: [
+        'karma-chrome-launcher',
+        'karma-jasmine',
+        'karma-ng-html2js-preprocessor'
+    ],
+
 
     // list of files / patterns to load in the browser
     files: [
-        'node_modules/jquery/dist/jquery.min.js',
-        'bower_components/angular/angular.min.js',
+        'node_modules/jquery/dist/jquery.js',
+        'bower_components/angular/angular.js',
         'bower_components/angular-mocks/angular-mocks.js',
         'scripts/*.js',
         'tests/*.js',
@@ -32,11 +38,13 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        'templates/*.html': 'html2js'
+        'templates/*.html': ['ng-html2js']
     },
-    ngHtml2JsPreprocessor: {
-        stripPrefix: 'templates/'
-    },
+
+    // ngHtml2JsPreprocessor: {
+    //     stripPrefix: 'templates/',
+    //     moduleName: 'megaVideoHtml'
+    // },
 
 
     // test results reporter to use

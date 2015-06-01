@@ -2,6 +2,7 @@ describe('megaVideo', function() {
 
    var mp4Src, oggSrc, html, compiled, element, scope;
    var videoPlayer, transcludedText, ctrl;
+   var volumeSlider, initialVolume, changedVolume;
 
    function processChange(rootScope, compile) {
       scope = rootScope.$new();
@@ -16,6 +17,8 @@ describe('megaVideo', function() {
       oggSrc = 'https://ia600500.us.archive.org/1/items/Duck_and_Cover/1951_duck_and_cover.ogv';
       mp4Src = 'https://archive.org/download/Duck_and_Cover/1951_duck_and_cover_512kb.mp4"';
       transcludedText = 'Video Description';
+      initialVolume = 0.1;
+      changedVolume = 0.9;
       //
       html = "";
       html += "<mega-video";
@@ -23,7 +26,7 @@ describe('megaVideo', function() {
       html += "   ogg=\"" + oggSrc + "\"";
       html += "   mp4=\"" + mp4Src + "\">";
       html += "   <h2>" + transcludedText + "</h2>";
-      html += "   <div volume-slider initial-volume=\"0.4\" class=\"my-slider\"></div>";
+      html += "   <div volume-slider initial-volume='" + initialVolume + "'></div>";
       html += "</mega-video>";
       //
       processChange($rootScope, $compile);
@@ -48,6 +51,15 @@ describe('megaVideo', function() {
       expect(angular.isFunction(ctrl.setVolume)).toBe(true);
       ctrl.setVolume(0.5);
       expect(videoPlayer.volume).toBe(0.5);
+   });
+   it('should have a functioning volume slider with correct initial position', function() {
+      volumeSlider = element.find('.ui-slider');
+      expect(volumeSlider.slider('option', 'value')).toBe(parseFloat(initialVolume));
+
+      ctrl = element.data('$megaVideoController');
+      spyOn(ctrl, 'setVolume');
+      volumeSlider.slider('option', 'value', changedVolume);
+      expect(ctrl.setVolume).toHaveBeenCalledWith(changedVolume);
    });
 
 });

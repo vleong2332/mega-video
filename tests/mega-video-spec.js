@@ -3,9 +3,9 @@ describe('megaVideo', function() {
    var mp4Src, oggSrc, html, compiled, element, scope;
    var videoPlayer, transcludedText, ctrl;
 
-   function processChange($rootScope, $compile) {
-      scope = $rootScope.$new();
-      compiled = $compile(html);
+   function processChange(rootScope, compile) {
+      scope = rootScope.$new();
+      compiled = compile(html);
       element = compiled(scope);
       scope.$digest();
    }
@@ -23,6 +23,7 @@ describe('megaVideo', function() {
       html += "   ogg=\"" + oggSrc + "\"";
       html += "   mp4=\"" + mp4Src + "\">";
       html += "   <h2>" + transcludedText + "</h2>";
+      html += "   <div volume-slider initial-volume=\"0.4\" class=\"my-slider\"></div>";
       html += "</mega-video>";
       //
       processChange($rootScope, $compile);
@@ -42,7 +43,7 @@ describe('megaVideo', function() {
       expect(element.text()).toContain(transcludedText);
    });
    it('should expose a controller to set volume', function() {
-      ctrl = element.data($megaVideoController);
+      ctrl = element.data('$megaVideoController');
       videoPlayer = element.find('video')[0];
       expect(angular.isFunction(ctrl.setVolume)).toBe(true);
       ctrl.setVolume(0.5);
